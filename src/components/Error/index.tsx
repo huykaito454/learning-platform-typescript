@@ -1,1 +1,2 @@
-export * from "./Error";
+export * from "./Error404";
+export * from "./Error403";

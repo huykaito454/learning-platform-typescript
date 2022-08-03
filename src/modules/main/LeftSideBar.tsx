@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useLogout } from "@pankod/refine-core";
-import LeftSideBarMenu from "./LeftSideBarMenu";
+import MenuStudent from "./MenuStudent";
+import MenuTeacher from "./MenuTeacher";
 const LeftSideBar = () => {
   const { user } = useSelector((state: any) => state.userGoogle);
   const { mutate: logout } = useLogout();
@@ -25,7 +26,7 @@ const LeftSideBar = () => {
           <p className="font-semibold">8th grade student</p>
         </div>
       </div>
-      <LeftSideBarMenu></LeftSideBarMenu>
+      <MenuTeacher></MenuTeacher>
       <div className="w-full flex flex-col items-start bg-primary p-4 rounded-xl mt-auto text-white gap-6">
         <div className="flex flex-col gap-1">
           <span>Do you still need our help?</span>

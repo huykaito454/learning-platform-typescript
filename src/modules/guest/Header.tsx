@@ -33,29 +33,21 @@ const Header: React.FC = () => {
             About Us
           </NavLink>
           <NavLink
-            to={"/contact"}
+            to={"/courses"}
             className={({ isActive }) =>
               isActive ? "text-primary cursor-pointer" : "cursor-pointer"
             }
           >
-            Contact
-          </NavLink>
-          <NavLink
-            to={"/student"}
-            className={({ isActive }) =>
-              isActive ? "text-primary cursor-pointer" : "cursor-pointer"
-            }
-          >
-            Student
+            All Courses
           </NavLink>
         </div>
         <div className="w-[120px] md:w-[230px] hidden sm:flex items-center justify-end gap-x-2 text-lg">
-          <NavLink
+          {/* <NavLink
             to={"/sign-up"}
             className="button py-1 px-6 font-semibold bg-white text-gray-700 border-white hover:text-primary hidden lg:block"
           >
             Sign Up
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to={"/sign-in"}
             className="button py-1 px-6 bg-primary border-primary"

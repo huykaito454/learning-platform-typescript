@@ -1,8 +1,5 @@
 import { AuthProvider } from "@pankod/refine-core";
-import { TOKEN_KEY, API_URL } from "../constants";
-import axios, { AxiosInstance } from "axios";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
+import { AxiosInstance } from "axios";
 import { store } from "store/configureStore";
 import { setUser } from "store/userGoggle/userGoogleSlice";
 export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
@@ -21,11 +18,15 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
     // localStorage.getItem(TOKEN_KEY) ? Promise.resolve() : Promise.reject(),
     getPermissions: () => {
       const auth = JSON.parse(localStorage.getItem("user")!);
-      // const auth = store?.getState()?.userGoogle?.user;
       if (auth) {
-        return Promise.resolve(auth);
+        store.dispatch(setUser(auth));
+        const user = store.getState().userGoogle.user;
+        return Promise.resolve(user);
+      } else {
+        store.dispatch(setUser(null));
+        const user = store.getState().userGoogle.user;
+        return user;
       }
-      return Promise.reject();
     },
     getUserIdentity: () => {
       const auth = JSON.parse(localStorage.getItem("user")!);

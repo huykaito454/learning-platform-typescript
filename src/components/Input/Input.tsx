@@ -1,7 +1,7 @@
 interface Props {
   register?: any;
-  className?: any;
-  placeholder?: any;
+  className?: string;
+  placeholder?: string;
   errors?: any;
   [x: string]: any;
 }
@@ -17,8 +17,8 @@ const Input: React.FC<Props> = ({
     <div className="relative">
       <input
         type="text"
-        className={`outline-none py-3 px-6 rounded-lg border-2 border-border1 w-full ${className} ${
-          errors.length > 0 ? " border-red-400 " : "focus:border-primary "
+        className={`outline-none py-3 px-6 rounded-lg border-2  w-full ${className} ${
+          errors.length > 0 ? "border-red-400" : "focus:border-primary "
         }`}
         placeholder={errors.length <= 0 ? placeholder : ""}
         {...register}

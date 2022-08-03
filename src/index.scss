@@ -266,6 +266,50 @@ abbr {
 .ReactQueryDevtools {
   display: none !important;
 }
+.notification {
+  // box-shadow: 0 0 3px red, 0 0 5px red;
+  box-shadow: 0 0 10px rgb(255, 0, 0);
+}
+
+.teacherdetails__AScore {
+  background-image: linear-gradient(
+    0deg,
+    rgba(246, 246, 246, 1) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.teacherdetails__Topics {
+  background-image: linear-gradient(
+    213.44deg,
+    #9fff24 67.39%,
+    rgba(178, 222, 122, 0) 108.35%
+  );
+}
+
+.teacherdetails__Students {
+  background-image: linear-gradient(
+    213.44deg,
+    rgba(255, 36, 207, 0.47) 67.39%,
+    rgba(203, 156, 211, 0) 108.35%
+  );
+}
+
+.teacherHome__mail {
+  background-image: linear-gradient(
+    358.89deg,
+    rgba(140, 200, 153, 0.56) 0.51%,
+    #d9a900 94.27%
+  );
+}
+
+.teacherHome__lesson {
+  background-image: linear-gradient(358.89deg, #ff9c86 0.51%, #8e59ff 94.27%);
+}
+
+.teacherHome__welcome {
+  background-image: url("./assets/images/teachers/stars.png");
+}
 @keyframes lds-ring {
   0% {
     transform: rotate(0deg);

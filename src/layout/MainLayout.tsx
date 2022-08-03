@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import LeftSideBar from "../modules/studentmain/LeftSideBar";
-import RightSideBar from "../modules/studentmain/RightSideBar";
+import LeftSideBar from "../modules/main/LeftSideBar";
+import RightSideBar from "../modules/main/RightSideBar";
 import { useGetIdentity } from "@pankod/refine-core";
 interface Props {
   children?: React.ReactNode;

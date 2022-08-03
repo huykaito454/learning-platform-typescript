@@ -1,12 +1,12 @@
 import { useGetIdentity } from "@pankod/refine-core";
 import HomePage from "./HomePage/HomePage";
-import StudentDashboardPage from "./StudentPage/StudentDashboardPage";
+import TeacherDashboardPage from "./TeacherPage/TeacherDashboardPage";
 const DashboardPage = () => {
   const { data: userIdentity } = useGetIdentity<string>();
   if (!userIdentity) {
     return <HomePage></HomePage>;
   } else {
-    return <StudentDashboardPage></StudentDashboardPage>;
+    return <TeacherDashboardPage></TeacherDashboardPage>;
   }
 };
 

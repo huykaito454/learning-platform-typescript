@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-const LeftSideBarMenu = () => {
+const MenuStudent = () => {
   return (
     <div className="flex flex-col gap-5 text-base cursor-pointer w-full select-none">
       <NavLink
-        to={"/student"}
+        to={"/"}
         className={({ isActive }) =>
           isActive
             ? "flex items-center justify-between gap-3 w-full -ml-5 px-4 py-2 border-l-[5px]  nav-item-active"
@@ -34,4 +34,4 @@ const LeftSideBarMenu = () => {
   );
 };
 
-export default LeftSideBarMenu;
+export default MenuStudent;
