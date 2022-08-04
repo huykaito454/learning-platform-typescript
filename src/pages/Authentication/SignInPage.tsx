@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import AuthenticationLayout from "../../layout/AuthenticationLayout";
@@ -7,14 +7,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IconEyeToggle from "../../components/Icon/IconEyeToggle";
 import useToggleValue from "../../hook/useToggleValue";
-import { GoogleLogin } from "react-google-login";
+import MicrosoftLogin from "react-microsoft-login";
 import { gapi } from "gapi-script";
-import { useLogin } from "@pankod/refine-core";
+import { useGetIdentity, useLogin } from "@pankod/refine-core";
 import { useDispatch } from "react-redux";
 import { setUser } from "store/userGoggle/userGoogleSlice";
 import { useEffect } from "react";
 import { TOKEN_KEY } from "../../constants";
 import { useNavigation } from "@pankod/refine-core";
+import { getUser } from "store/user/userSlice";
+import { toast } from "react-toastify";
 const schema = yup.object({
   email: yup
     .string()
@@ -27,6 +29,7 @@ const schema = yup.object({
 });
 const SignInPage = () => {
   const dispatch = useDispatch();
+  const { data: userIdentity } = useGetIdentity<string>();
   const { push } = useNavigation();
   const { value: showPassword, handleToggleValue: handleTogglePassword } =
     useToggleValue();
@@ -35,47 +38,50 @@ const SignInPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const { mutate: login } = useLogin();
-  const onSubmit = (values: any) => {
-    // login(values);
+  const onSubmit = async (values: any) => {
+    if (values.email === "student@gmail.com") {
+      dispatch(getUser(2));
+      localStorage.setItem("token", "2");
+      push("/");
+    } else if (values.email === "teacher@gmail.com") {
+      dispatch(getUser(1));
+      localStorage.setItem("token", "1");
+      push("/");
+    } else {
+      toast.error("Error", { position: "top-right", autoClose: 2000 });
+    }
   };
-  const handleLogin = (response: any) => {
-    dispatch(setUser(response.profileObj));
-    localStorage.setItem("user", JSON.stringify(response.profileObj)!);
-    localStorage.setItem(TOKEN_KEY, JSON.stringify(response.accessToken)!);
-    push("/");
+  const authHandler = (err: any, data: any, msal: any) => {
+    if (!err && data) {
+      if (data?.account?.userName === "huynt@primas.edu.vn") {
+        dispatch(getUser(1));
+        localStorage.setItem("token", "1");
+        push("/");
+      } else if (data?.account?.userName === "19110217@student.hcmute.edu.vn") {
+        dispatch(getUser(2));
+        localStorage.setItem("token", "2");
+        push("/");
+      } else {
+        toast.error("Error", { position: "top-right", autoClose: 2000 });
+      }
+    } else return;
   };
-  const handleFailure = (response: any) => {
-    alert(response);
-  };
-  gapi.load("client:auth2", () => {
-    gapi.client.init({
-      clientId:
-        "625384490128-gc6s2ejbn2q14tcjdslm5kaq7ktqp6oj.apps.googleusercontent.com",
-      plugin_name: "chat",
-    });
-  });
   useEffect(() => {
-    localStorage.clear();
+    if (userIdentity) {
+      return push("/");
+    } else return;
   }, []);
   return (
     <AuthenticationLayout>
       <div className="absolute bg-white p-6 sm:p-12 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-sm flex flex-col gap-y-4 items-center min-w-[350px] sm:min-w-[555px]">
         <span className="text-2xl font-semibold">Welcome Back!</span>
-        <div className="gap-x-2 flex items-center">
-          <span className="text-[#808191]">Dont have an account?</span>
-          <NavLink to={"/sign-up"} className="text-secondary underline">
-            Sign up
-          </NavLink>
+        <div className="w-full flex items-center justify-center">
+          <MicrosoftLogin
+            clientId={"f11a7498-585a-49c3-bf5a-e1e0b3624bbb"}
+            authCallback={authHandler}
+            buttonTheme="light"
+          />
         </div>
-        <GoogleLogin
-          clientId="625384490128-gc6s2ejbn2q14tcjdslm5kaq7ktqp6oj.apps.googleusercontent.com"
-          buttonText="Sign in with google"
-          onSuccess={handleLogin}
-          onFailure={handleFailure}
-          cookiePolicy={"single_host_origin"}
-          className="google"
-        ></GoogleLogin>
         <form
           className="w-full flex flex-col gap-y-5"
           onSubmit={handleSubmit(onSubmit)}

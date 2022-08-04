@@ -1,0 +1,18 @@
+{
+  "profile": [
+    {
+      "id": 1,
+      "name": "Huy",
+      "email": "huynt@primas.edu.vn",
+      "imageUrl": "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.6435-9/97563806_2656875631248579_3206429855126126592_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=174925&_nc_ohc=Q55pYHMz2mgAX-gMLdb&_nc_ht=scontent.fsgn13-2.fna&oh=00_AT_pfEFOdvf7UzQxud_CA5LXGXVVAJ5V8XEaBTBJiXWsog&oe=630ED1BD",
+      "role": "TEACHER"
+    },
+    {
+      "id": 2,
+      "name": "Tín",
+      "email": "19110217@student.hcmute.edu.vn",
+      "imageUrl": "https://scontent.fsgn13-4.fna.fbcdn.net/v/t39.30808-6/278918642_3211513539118116_2887560250287673471_n.jpg?stp=dst-jpg_s851x315&_nc_cat=110&ccb=1-7&_nc_sid=dbeb18&_nc_ohc=hqzaKJ99hxYAX-NIZpo&_nc_ht=scontent.fsgn13-4.fna&oh=00_AT8t3yPIuyFG7u3_dPYMGatzDjmLSpVYb9xsvcMyr9O-XQ&oe=62EEEEE8",
+      "role": "STUDENT"
+    }
+  ]
+}

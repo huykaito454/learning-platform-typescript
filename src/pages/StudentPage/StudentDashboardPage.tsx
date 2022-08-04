@@ -3,7 +3,7 @@ import Error403 from "components/Error/Error403";
 
 const StudentDashboardPage = () => {
   const { data: permissionsData } = usePermissions();
-  if (!permissionsData) {
+  if (permissionsData === "STUDENT") {
     return <div>StudentDashboardPage</div>;
   } else return <Error403></Error403>;
 };

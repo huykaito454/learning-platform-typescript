@@ -20,7 +20,7 @@ const TeacherDashboardPage = () => {
       setMinutes(new Date().getMinutes());
     }, 1000);
   }, [hours, minutes]);
-  if (permissionsData) {
+  if (permissionsData === "TEACHER") {
     return (
       <div className="flex flex-col gap-10 mx-12">
         {/* top */}

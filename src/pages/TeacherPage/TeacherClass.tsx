@@ -11,7 +11,7 @@ import { Scrollbar, Mousewheel } from "swiper";
 import ClassCard from "modules/teacher/ClassCard";
 const TeacherClass = () => {
   const { data: permissionsData } = usePermissions();
-  if (permissionsData) {
+  if (permissionsData === "TEACHER") {
     return (
       <div className="flex flex-col gap-5">
         {/* top */}

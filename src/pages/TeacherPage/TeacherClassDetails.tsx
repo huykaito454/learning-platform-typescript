@@ -9,7 +9,7 @@ const TeacherClassDetails = () => {
   let noti = 3;
   let { push } = useNavigation();
   const { data: permissionsData } = usePermissions();
-  if (permissionsData) {
+  if (permissionsData === "TEACHER") {
     return (
       <div className="flex flex-col gap-7">
         {/* top */}

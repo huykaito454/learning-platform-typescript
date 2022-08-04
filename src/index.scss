@@ -110,14 +110,6 @@ input:-webkit-autofill:active {
     scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.google {
-  @apply w-full items-center justify-center rounded;
-  box-shadow: 0 0 0 0 white !important;
-  border-radius: 0.5rem !important;
-  border: 2px solid !important;
-  border-color: #f1f1f3 !important;
-  padding: 0.2rem 0 !important;
-}
 .react-calendar {
   background-color: transparent !important;
   border-color: transparent !important;

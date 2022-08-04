@@ -10,7 +10,7 @@ const userSlice = createSlice({
       ...state,
       user: action.payload,
     }),
-    getUser() {},
+    getUser(state, action) {},
     setError: (state, action) => ({
       ...state,
       error: action.payload,
