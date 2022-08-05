@@ -3,9 +3,12 @@ import React from 'react';
 import { useNavigation } from '@pankod/refine-core';
 import Banner from 'modules/teacher/Banner';
 import Blank from '../../assets/images/teachers/blank.png';
+import { useModal } from '@pankod/refine-core';
+import FirstStep from 'modules/teacher/CreateQuestionModals/FirstStep';
 
 const TeacherCreateCollection = () => {
   const { push } = useNavigation();
+  const { visible, show, close } = useModal();
   return (
     <div className='flex flex-col gap-10'>
       {/* back */}
@@ -24,7 +27,10 @@ const TeacherCreateCollection = () => {
       <div className='flex flex-col gap-5 justify-center items-center'>
         <img src={Blank} alt='' className='w-[200px] h-[200px]' />
         <span className='text-2xl'>You have no question create now</span>
-        <Button className='bg-[#1504D8]'>Add question</Button>
+        <Button className='bg-[#1504D8]' onClick={show}>
+          Add question
+        </Button>
+        {visible && <FirstStep onClose={close} />}
       </div>
     </div>
   );
