@@ -69,7 +69,7 @@ input:-webkit-autofill:active {
   .bg-right-nav-item-gradient {
     background: linear-gradient(180deg, #503036 7.21%, #241f76 100%);
   }
-  input[type="radio"]:checked + label {
+  input[type='radio']:checked + label {
     background-color: #3b5be9;
     color: white;
   }
@@ -300,7 +300,7 @@ abbr {
 }
 
 .teacherHome__welcome {
-  background-image: url("./assets/images/teachers/stars.png");
+  background-image: url('./assets/images/teachers/stars.png');
 }
 @keyframes lds-ring {
   0% {
@@ -341,4 +341,17 @@ abbr {
   .slogan {
     font-size: 0.8rem;
   }
+}
+
+.teacher__active {
+  box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+}
+
+.shadow-custom {
+  background: linear-gradient(145deg, #f7f7f7, #ffffff);
+  box-shadow: 5px 5px 10px #a8a8a8, -5px -5px 10px #ffffff;
+}
+
+.shadow-innerQB {
+  box-shadow: inset 3px 1px 10px #2a9ad9, inset -3px -1px 10px #ffffff;
 }
