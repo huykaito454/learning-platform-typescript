@@ -1,19 +1,18 @@
 import Button from 'components/Button/Button';
 import QuestionBankCard from 'modules/teacher/QuestionBankCard';
 import React, { useState } from 'react';
-import cardbg from '../../assets/images/teachers/questioncardbg.png';
+import { useNavigation } from '@pankod/refine-core';
 
+// swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/scrollbar';
-
-// import required modules
 import { Scrollbar, Mousewheel } from 'swiper';
 
 const TeacherQuestionBank = () => {
   const [activeGrade, setActiveGrade] = useState(0);
   const [activeGrade2, setActiveGrade2] = useState(0);
+  const { push } = useNavigation();
   return (
     <div className='flex flex-col gap-7'>
       <span className='font-semibold text-2xl'>
@@ -79,7 +78,11 @@ const TeacherQuestionBank = () => {
         <span className='font-semibold text-2xl'>
           Your Question Collections
         </span>
-        <Button className='py-1 px-2 bg-white text-primary border-none shadow-custom outline-none'>
+        <Button
+          className='py-1 px-2 bg-white text-primary border-none shadow-custom outline-none'
+          onClick={() => {
+            push('/question-bank/create-collection');
+          }}>
           <i className='fas fa-plus'></i>
         </Button>
       </div>

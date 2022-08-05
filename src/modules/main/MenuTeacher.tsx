@@ -23,6 +23,16 @@ const MenuTeacher = () => {
         <i className='fas fa-graduation-cap'></i>
         <span className='w-[85%]'>Class</span>
       </NavLink>
+      <NavLink
+        to={'/question-bank'}
+        className={({ isActive }) =>
+          isActive
+            ? 'flex items-center justify-between gap-3 w-full -ml-5 px-4 py-2 border-l-[5px]  nav-item-active'
+            : 'flex items-center justify-between gap-3 w-full -ml-5 px-4 py-2 border-l-[5px] border-white'
+        }>
+        <i className='fas fa-question'></i>
+        <span className='w-[85%]'>Question Bank</span>
+      </NavLink>
     </div>
   );
 };

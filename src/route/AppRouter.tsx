@@ -12,6 +12,7 @@ import TeacherClassDetails from 'pages/TeacherPage/TeacherClassDetails';
 import TeacherScores from 'pages/TeacherPage/TeacherScores';
 import TeacherQuestionBank from 'pages/TeacherPage/TeacherQuestionBank';
 import TeacherSetting from 'pages/TeacherPage/TeacherSetting';
+import TeacherCreateCollection from 'pages/TeacherPage/TeacherCreateCollection';
 const AppRouter = () => {
   return (
     <Refine
@@ -27,6 +28,10 @@ const AppRouter = () => {
         { name: '/class-details', list: TeacherClassDetails },
         { name: '/class-details/score', list: TeacherScores },
         { name: '/question-bank', list: TeacherQuestionBank },
+        {
+          name: '/question-bank/create-collection',
+          list: TeacherCreateCollection,
+        },
         { name: '/setting', list: TeacherSetting },
       ]}
       Layout={MainLayout}

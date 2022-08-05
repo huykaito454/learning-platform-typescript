@@ -1,26 +1,25 @@
 import Button from 'components/Button/Button';
+import Banner from 'modules/teacher/Banner';
 import React from 'react';
-
-interface Data {
-  topicName: string;
-  score: number;
-  questions: number;
-}
+import { useNavigation } from '@pankod/refine-core';
 
 const TeacherScores = () => {
+  const { push } = useNavigation();
   return (
     <div className='flex flex-col gap-5 justify-center'>
       {/* back */}
-      <div className='flex gap-2 items-center'>
+      <div
+        className='flex gap-2 items-center'
+        onClick={() => {
+          push('/class-details');
+        }}>
         <i className='fas fa-caret-left text-xl font-bold'></i>
         <a className='underline underline-offset-4 font-semibold cursor-pointer'>
           MATH_CLASS_69
         </a>
       </div>
       {/* banner */}
-      <div className='w-[100%] bg-primary pl-7 py-7 shadow-xl text-white rounded-lg flex items-center'>
-        <span className='text-2xl font-semibold'>All Topics</span>
-      </div>
+      <Banner title='All topics' />
       {/* search bar */}
       <div className='flex justify-center'>
         <input
