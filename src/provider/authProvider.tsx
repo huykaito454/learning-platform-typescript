@@ -3,6 +3,7 @@ import { AxiosInstance } from 'axios'
 import { API_URL } from '../constants'
 import { store } from 'store/configureStore'
 import { setUser } from 'store/user/userSlice'
+// import * as Cookies from 'js-cookie'
 export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
   return {
     login: async (payload) => {
@@ -23,23 +24,29 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
       const token = localStorage.getItem('token')!
       if (token) {
         const jwt = Number(token)
-        const { data } = await axiosInstance.get(`${API_URL}login`, {
-          params: { id: jwt },
+        const { data } = await axiosInstance.get(`${API_URL}account`, {
+          headers: {
+            "Content-Type" : "application/json",
+            Authorization: "Bearer " + token
+          }
+
         })
         store.dispatch(setUser(data[0]))
         const user = store.getState().user.user
+        console.log("hello",user.role)
         return Promise.resolve(user.role)
       } else {
         store.dispatch(setUser(null))
         const user = store.getState().user.user
         return user
       }
+      // return store.getState().user.user.role
     },
     getUserIdentity: async () => {
       const token = localStorage.getItem('token')!
       if (token) {
         const jwt = Number(token)
-        const { data } = await axiosInstance.get(`${API_URL}login`, {
+        const { data } = await axiosInstance.get(`${API_URL}account`, {
           params: { id: jwt },
         })
         store.dispatch(setUser(data[0]))
@@ -51,6 +58,7 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
         const user = store.getState().user.user
         return user
       }
+      // return store.getState().user.user
     },
   }
 }

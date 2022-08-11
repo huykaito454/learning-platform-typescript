@@ -11,3 +11,4 @@ export default function* handleGetUser({ payload }: any): any {
     console.log(error)
   }
 }
+

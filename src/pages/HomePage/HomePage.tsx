@@ -1,6 +1,15 @@
 import imageHome from "../../assets/images/home3.png";
 import MainGuestLayout from "layout/MainGuestLayout";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 const HomePage = () => {
+  const {user} = useSelector((state:any) => state.user)
+  useEffect(() => {
+    
+  // console.log(user)
+    
+  }, [])
+  
   return (
     <MainGuestLayout>
       <div className="w-full bg-gradient-to-b from-white to-[#fafafa]">

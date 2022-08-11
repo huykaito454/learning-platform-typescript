@@ -16,8 +16,8 @@ const StudentAssignment = () => {
     dispatch(getQuestionList())
   }, [dispatch])
   const { push } = useNavigation()
-  // const { data: permissionsData } = usePermissions()
-  // if (permissionsData === 'STUDENT') {
+  const { data: permissionsData } = usePermissions()
+  if (permissionsData === 'STUDENT') {
   return (
     <div className="w-full flex flex-col items-start gap-10">
       {!questionList && <Loading></Loading>}
@@ -46,7 +46,7 @@ const StudentAssignment = () => {
       <ExplanationModal></ExplanationModal>
     </div>
   )
-  // } else return <Error403></Error403>
+  } else return <Error403></Error403>
 }
 
 export default StudentAssignment

@@ -4,8 +4,8 @@ import Error403 from 'components/Error/Error403'
 
 const StudentDashboardPage = () => {
   const { push } = useNavigation()
-  // const { data: permissionsData } = usePermissions()
-  // if (permissionsData === 'STUDENT') {
+  const { data: permissionsData } = usePermissions()
+  if (permissionsData === 'STUDENT') {
   return (
     <div>
       <div className="w-[40%] h-[250px] rounded-md bg-white shadow-xl flex flex-col gap-4">
@@ -25,7 +25,7 @@ const StudentDashboardPage = () => {
       </div>
     </div>
   )
-  // } else return <Error403></Error403>
+  } else return <Error403></Error403>
 }
 
 export default StudentDashboardPage

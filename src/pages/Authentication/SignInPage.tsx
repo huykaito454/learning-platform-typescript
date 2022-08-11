@@ -10,12 +10,11 @@ import useToggleValue from '../../hook/useToggleValue'
 import MicrosoftLogin from 'react-microsoft-login'
 import { gapi } from 'gapi-script'
 import { useGetIdentity, useLogin } from '@pankod/refine-core'
-import { useDispatch } from 'react-redux'
-import { setUser } from 'store/userGoggle/userGoogleSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { TOKEN_KEY } from '../../constants'
 import { useNavigation } from '@pankod/refine-core'
-import { getUser } from 'store/user/userSlice'
+import { getUser, setUser } from 'store/user/userSlice'
 import { toast } from 'react-toastify'
 import { authenticate } from 'store/user/services'
 const schema = yup.object({
@@ -56,10 +55,21 @@ const SignInPage = () => {
   }
   const authHandler = async (err: any, data: any, msal: any) => {
     if (!err && data) {
-      const accessData = await authenticate(
-        data?.account?.userName,
-        data?.account?.accountIdentifier,
-      )
+      try {
+        const userData = await authenticate(
+          data?.account?.userName,
+          data?.account?.accountIdentifier,
+        )
+        localStorage.setItem("token", userData.headers.authorization)
+        dispatch(setUser(userData.data));
+        push('/')
+      } catch (err : any) {
+        // console.log(err.message)
+        toast.error(err?.response?.data?.message, {
+          position: 'top-right',
+          autoClose: 2000,
+        })
+      }
     }
     // if (!err && data) {
     //   if (data?.account?.userName === 'nhatnm@primascx.net') {
