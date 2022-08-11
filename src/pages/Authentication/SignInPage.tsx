@@ -60,7 +60,6 @@ const SignInPage = () => {
         data?.account?.userName,
         data?.account?.accountIdentifier,
       )
-      console.log(accessData?.headers['Set-Cookie'])
     }
     // if (!err && data) {
     //   if (data?.account?.userName === 'nhatnm@primascx.net') {

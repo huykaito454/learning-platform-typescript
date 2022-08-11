@@ -13,9 +13,13 @@ export default function getUser(email: string) {
 }
 
 export async function authenticate(username: string, password: string) {
-  const res = await axios.post(`${API_URL}login`, {
-    username: username,
-    password: password,
-  })
+  const res = await axios.post(
+    `${API_URL}login`,
+    {
+      username: username,
+      password: password,
+    },
+    { withCredentials: true },
+  )
   return res
 }
