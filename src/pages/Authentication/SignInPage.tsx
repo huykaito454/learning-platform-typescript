@@ -17,6 +17,7 @@ import { TOKEN_KEY } from '../../constants'
 import { useNavigation } from '@pankod/refine-core'
 import { getUser } from 'store/user/userSlice'
 import { toast } from 'react-toastify'
+import { authenticate } from 'store/user/services'
 const schema = yup.object({
   email: yup
     .string()
@@ -53,20 +54,27 @@ const SignInPage = () => {
       toast.error('Error', { position: 'top-right', autoClose: 2000 })
     }
   }
-  const authHandler = (err: any, data: any, msal: any) => {
+  const authHandler = async (err: any, data: any, msal: any) => {
     if (!err && data) {
-      if (data?.account?.userName === 'nhatnm@primascx.net') {
-        dispatch(getUser(1))
-        localStorage.setItem('token', '1')
-        push('/')
-      } else if (data?.account?.userName === '19110256@student.hcmute.edu.vn') {
-        dispatch(getUser(2))
-        localStorage.setItem('token', '2')
-        push('/')
-      } else {
-        toast.error('Error', { position: 'top-right', autoClose: 2000 })
-      }
-    } else return
+      const accessData = await authenticate(
+        data?.account?.userName,
+        data?.account?.accountIdentifier,
+      )
+      console.log(accessData?.headers['Set-Cookie'])
+    }
+    // if (!err && data) {
+    //   if (data?.account?.userName === 'nhatnm@primascx.net') {
+    //     dispatch(getUser(data?.account?.userName))
+    //     localStorage.setItem('token', '1')
+    //     push('/')
+    //   } else if (data?.account?.userName === '19110256@student.hcmute.edu.vn') {
+    //     dispatch(getUser(2))
+    //     localStorage.setItem('token', '2')
+    //     push('/')
+    //   } else {
+    //     toast.error('Error', { position: 'top-right', autoClose: 2000 })
+    //   }
+    // } else return
   }
   useEffect(() => {
     if (userIdentity) {
