@@ -23,7 +23,7 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
       const token = localStorage.getItem('token')!
       if (token) {
         const jwt = Number(token)
-        const { data } = await axiosInstance.get(`${API_URL}profile`, {
+        const { data } = await axiosInstance.get(`${API_URL}login`, {
           params: { id: jwt },
         })
         store.dispatch(setUser(data[0]))
@@ -39,7 +39,7 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
       const token = localStorage.getItem('token')!
       if (token) {
         const jwt = Number(token)
-        const { data } = await axiosInstance.get(`${API_URL}profile`, {
+        const { data } = await axiosInstance.get(`${API_URL}login`, {
           params: { id: jwt },
         })
         store.dispatch(setUser(data[0]))

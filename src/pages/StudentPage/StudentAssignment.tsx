@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useNavigation, usePermissions } from '@pankod/refine-core'
 import ExplanationModal from '../../modules/student/ExplanationModal'
 import QuestionCard from 'modules/student/QuestionCard'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,12 +8,16 @@ import {
   setQuestionList,
 } from '../../store/questionlist/questionListSlice'
 import Loading from '../../components/Loading/Loading'
+import Error403 from 'components/Error/Error403'
 const StudentAssignment = () => {
   const { questionList } = useSelector((state: any) => state.questionList)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getQuestionList())
   }, [dispatch])
+  const { push } = useNavigation()
+  // const { data: permissionsData } = usePermissions()
+  // if (permissionsData === 'STUDENT') {
   return (
     <div className="w-full flex flex-col items-start gap-10">
       {!questionList && <Loading></Loading>}
@@ -41,6 +46,7 @@ const StudentAssignment = () => {
       <ExplanationModal></ExplanationModal>
     </div>
   )
+  // } else return <Error403></Error403>
 }
 
 export default StudentAssignment
