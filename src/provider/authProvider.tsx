@@ -30,9 +30,8 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
             Authorization: "Bearer " + token
           }
         })
-        store.dispatch(setUser(data[0]))
+        store.dispatch(setUser(data))
         const user = store.getState().user.user
-        console.log("hello",user.role)
         return Promise.resolve(user.role)
       } else {
         store.dispatch(setUser(null))
@@ -45,12 +44,16 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
       const token = localStorage.getItem('token')!
       if (token) {
         const jwt = Number(token)
-        const { data } = await axiosInstance.get(`${API_URL}account`, {
-          params: { id: jwt },
-        })
-        store.dispatch(setUser(data[0]))
+        const { data } = await axiosInstance.get(`${API_URL}account`,
+        {
+          headers: {
+            "Content-Type" : "application/json",
+            Authorization: "Bearer " + token
+          }
+        }
+        )
+        store.dispatch(setUser(data))
         const user = store.getState().user.user
-
         return Promise.resolve(user)
       } else {
         store.dispatch(setUser(null))
