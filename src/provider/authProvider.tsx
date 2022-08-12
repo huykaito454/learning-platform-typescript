@@ -29,7 +29,6 @@ export const authProvider = (axiosInstance: AxiosInstance): AuthProvider => {
             "Content-Type" : "application/json",
             Authorization: "Bearer " + token
           }
-
         })
         store.dispatch(setUser(data[0]))
         const user = store.getState().user.user
